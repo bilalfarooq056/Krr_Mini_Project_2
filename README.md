@@ -225,6 +225,6 @@ Ontology.owl + Properties.ttl
 ---
 
 ### 👨‍💻 Maintainers
-- **Ontology Team:** [Your Name / Group Member]  
-- **Jena Team:** [Member Name]  
-- **Python Interface Team:** [Member Name]  
+- **Ontology Team:** [Bilal Farooq, AlamZeb]  
+- **Jena Team:** [Saad Khan]  
+- **Python Interface Team:** [Washam Bin Adnan]  
