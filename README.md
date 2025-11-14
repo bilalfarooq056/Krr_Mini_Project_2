@@ -1,230 +1,211 @@
-# 🧠 Knowledge Representation & Reasoning (KRR) Mini Project 2  
-### **Topic:** *Cultural Differences in Pakistan*  
-### **Course Phases:** NER → Ontology → Jena → Python Interface  
+
 
 ---
 
-## 📚 Project Overview
+# 🧠 Knowledge Representation & Reasoning (KRR) — Mini Project 2
 
-This project represents knowledge about *Cultural Differences in Pakistan* using semantic web technologies.  
-It extracts cultural entities from text (NER), builds an ontology in OWL format, loads it into Apache Jena Fuseki for querying, and connects to a Python interface using SPARQL.
+### **Topic:** *Cultural Differences in Pakistan*
 
----
-
-## 🏗️ **Phase 1: Named Entity Recognition (NER) Extraction (3–4 Days)**
-
-### 🎯 **Objective:**  
-Automatically extract named entities (e.g., Persons, Organizations, Locations, Festivals, Languages) from raw text (news articles or research abstracts).
-
-### 🧰 **Tools Used:**  
-- Python  
-- spaCy (pre-trained model: `en_core_web_sm`)  
-- pandas  
-
-### 🧩 **Steps:**
-1. Use spaCy NER to extract entities from text.  
-2. Identify standard entity types:  
-   - `Person`, `Organization`, `Location`, `Date`, `Money`, etc.  
-3. Save extracted entities in a structured CSV file:
-   ```csv
-   source_url, entity_text, label, start_char, end_char, context_sentence
-   ```
-4. Generate RDF triples (`subject`, `predicate`, `object`) for each entity.
-5. Export:
-   - `entities_extracted.csv`
-   - `triples.csv`
-   - `triples.ttl` (RDF/Turtle format)
-
-### 📦 **Output Files:**
-- `entities_extracted.csv`
-- `triples.csv`
-- `triples.ttl`
+### **Phases:** NER → Ontology → Jena → Python Interface → Streamlit GUI
 
 ---
 
-## 🧱 **Phase 2: Ontology Design & Modeling (3–4 Days)**
+## 📚 Overview
 
-### 🎯 **Objective:**  
-Create a domain ontology for *Cultural Differences in Pakistan* using entities extracted from Phase 1.
-
-### 🧰 **Tools Used:**  
-- Protégé (RDF/OWL Editor)  
-- Turtle/RDF Files from Phase 1  
-
-### 🧩 **Steps:**
-1. Import triples into Protégé (`triples.ttl`).  
-2. Define **Classes** (domain concepts):
-   - Example: `Person`, `Organization`, `Language`, `Festival`, `CulturalGroup`, `Religion`, `Location`, etc.  
-3. Add **Object Properties** (relations between entities):  
-   Example:  
-   - `speaksLanguage (Person → Language)`  
-   - `celebratesFestival (CulturalGroup → Festival)`  
-   - `locatedIn (Entity → Location)`  
-4. Add **Data Properties** (attributes of entities):  
-   Example:  
-   - `hasName`, `hasDescription`, `hasSourceURL`, `hasContextSentence`, etc.  
-5. Assign classes, individuals, and properties to form a complete ontology.  
-6. Export the ontology in OWL format.
-
-### 📦 **Output Files:**
-- `ontology.owl` (main ontology for Phase 3)
-- `cultural_difference_properties.ttl` (properties definitions)
-- `triples.ttl` (instance data)
-
-### ✅ **Phase 2 Deliverables Handed to Phase 3 Team:**
-| File | Description |
-|------|--------------|
-| `ontology.owl` | Full ontology with classes, individuals, and relations |
-| `triples.ttl` | Instance-level data extracted from NER |
-| `cultural_difference_properties.ttl` | Object & Data property definitions |
+This project aims to represent knowledge about **Cultural Differences in Pakistan** using Semantic Web technologies.
+It provides a complete pipeline starting from **Named Entity Recognition (NER)** → **Ontology Modeling** → **Apache Jena Fuseki SPARQL querying** → **Python/Streamlit GUI interface**.
 
 ---
 
-## 🧮 **Phase 3: Apache Jena Setup (2–3 Days)**
+# 📂 Project Structure (Based on ZIP)
 
-### 🎯 **Objective:**  
-Load the ontology into Apache Jena Fuseki, set up a SPARQL endpoint, and test knowledge queries.
+```
+Mini_project_2/
+│
+├── entities_extracted.csv
+├── entities.csv
+├── triples.csv
+├── triples.ttl
+│
+├── cultural_difference_properties.ttl
+├── culturaldifference_enriched.ttl
+├── culture.rdf
+│
+├── queries.txt
+├── insert query(culture).txt
+├── jena running code.txt
+│
+├── app.py
+├── Mini_project_2_all_phases.ipynb
+│
+└── README.md (this file)
+```
 
-### 🧰 **Tools Used:**  
-- Apache Jena Fuseki  
-- Jena TDB Dataset  
-- Web Interface for SPARQL  
+---
 
-### 🧩 **Steps:**
-1. **Install Apache Jena Fuseki**  
-   Download from: [https://jena.apache.org/download/](https://jena.apache.org/download/)  
-2. **Run Fuseki server:**
+# 🏗️ Phase 1 — Named Entity Recognition (NER)
+
+### ✔️ Description
+
+Extract cultural entities from text (spaCy) and convert them into RDF triples.
+
+### 📌 Files
+
+* `entities_extracted.csv`
+* `entities.csv`
+* `triples.csv`
+* `triples.ttl`
+* Code: *inside* `Mini_project_2_all_phases.ipynb`
+
+### 📌 Output
+
+* Cleaned NER results
+* RDF triples in Turtle format
+
+---
+
+# 🧱 Phase 2 — Ontology Design (Protégé)
+
+### ✔️ Description
+
+Design domain ontology for cultural differences in Pakistan.
+
+### 📌 Files
+
+* `cultural_difference_properties.ttl`
+* `culturaldifference_enriched.ttl`
+* `culture.rdf`
+* `triples.ttl`
+
+### 📌 Modeling
+
+* Classes: Person, CulturalGroup, Religion, Language, Festival, Organization, Location
+* Object properties: speaksLanguage, celebratesFestival, follows, locatedIn
+* Data properties: hasName, hasDescription, hasContextSentence
+
+---
+
+# 🧮 Phase 3 — Apache Jena Fuseki SPARQL Server
+
+### ✔️ Description
+
+Load ontology and RDF data into Fuseki for querying.
+
+### 📌 Files
+
+* `jena running code.txt`
+* `queries.txt`
+* `insert query(culture).txt`
+
+### 📌 Steps
+
+1. Download Apache Jena Fuseki
+
+2. Run server:
+
    ```bash
    fuseki-server
    ```
-3. Open `http://localhost:3030/` in browser.  
-4. Create a new **dataset** (TDB).  
+
+3. Open:
+   [http://localhost:3030/](http://localhost:3030/)
+
+4. Create dataset
+
 5. Upload:
-   - `ontology.owl`
-   - `triples.ttl`
-   - `cultural_difference_properties.ttl`
-6. Test basic SPARQL queries:
-   ```sparql
-   SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 50
-   ```
-   Example domain query:
-   ```sparql
-   SELECT ?person ?lang WHERE {
-       ?person rdf:type <http://example.org/culturaldifference#Person> .
-       ?person <http://example.org/culturaldifference#speaksLanguage> ?lang .
-   } LIMIT 20
-   ```
 
-### 📦 **Output:**
-- Working SPARQL endpoint (`http://localhost:3030/dataset/sparql`)  
-- Verified ontology loaded into Fuseki  
+   * `triples.ttl`
+   * `cultural_difference_properties.ttl`
+   * `culturaldifference_enriched.ttl`
+   * `culture.rdf` (optional RDF/XML)
+
+### 📌 Example SPARQL Query
+
+```sparql
+PREFIX : <http://example.org/culturaldifference#>
+SELECT ?person ?lang WHERE {
+    ?person a :Person ;
+            :speaksLanguage ?lang .
+}
+```
 
 ---
 
-## 🐍 **Phase 4: Python Interface (3–4 Days)**
+# 🐍 Phase 4 — Python + Streamlit GUI Interface
 
-### 🎯 **Objective:**  
-Connect the Fuseki SPARQL endpoint to a Python interface for querying, adding, and analyzing entities.
+### ✔️ Description
 
-### 🧰 **Tools Used:**  
-- Python  
-- `SPARQLWrapper` library  
-- Optional: Flask / Tkinter GUI  
+A simple GUI to test SPARQL queries on the Fuseki server.
 
-### 🧩 **Steps:**
-1. Install SPARQLWrapper:
-   ```bash
-   pip install SPARQLWrapper
-   ```
-2. Connect to Fuseki endpoint:
-   ```python
-   from SPARQLWrapper import SPARQLWrapper, JSON
+### 📌 Files
 
-   sparql = SPARQLWrapper("http://localhost:3030/dataset/sparql")
-   sparql.setQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10")
-   sparql.setReturnFormat(JSON)
-   results = sparql.query().convert()
-   ```
-3. Implement helper functions:
-   ```python
-   def add_entity(entity_type, entity_name): ...
-   def query_entities(sparql_query): ...
-   def find_relationships(entity): ...
-   ```
-4. (Optional) Create a simple GUI to:
-   - Add new entities  
-   - Run SPARQL queries  
-   - Display relationships visually
+* `app.py`
 
-### 📦 **Output:**
-- `fuseki_interface.py` (main script)
-- `gui_interface.py` (optional GUI)
-- Live connection to Fuseki endpoint
+### 📌 Requirements
+
+Install dependencies (Windows/Linux/Mac):
+
+```bash
+pip install streamlit SPARQLWrapper
+```
+
+### 📌 Run GUI
+
+```bash
+streamlit run app.py
+```
 
 ---
 
-## 📊 **Project Deliverables Summary**
+# 🚀 Features
 
-| Phase | Output | Responsible Team |
-|-------|---------|------------------|
-| Phase 1 | `entities_extracted.csv`, `triples.ttl` | NER Engineer |
-| Phase 2 | `ontology.owl`, `cultural_difference_properties.ttl` | Ontology Architect |
-| Phase 3 | Fuseki setup & endpoint | Jena Engineer |
-| Phase 4 | Python SPARQL GUI | Python Developer |
+* ✔️ Fully automated entity extraction
+* ✔️ Complete domain ontology
+* ✔️ Jena Fuseki SPARQL endpoint
+* ✔️ Ready-to-use Streamlit GUI
+* ✔️ Works with real cultural data for Pakistan
 
 ---
 
-## 🧩 **Project Architecture Overview**
+# 🧩 Architecture Diagram
 
 ```
 Text Source
     ↓
-[Phase 1] Entity Extraction (spaCy)
+[Phase 1] NER Extraction (spaCy)
     ↓
-Entities + Triples (CSV, TTL)
+triples.ttl + entities.csv
     ↓
 [Phase 2] Ontology Modeling (Protégé)
     ↓
-Ontology.owl + Properties.ttl
+Ontology + Properties + Enriched TTL
     ↓
-[Phase 3] Apache Jena Fuseki (SPARQL Endpoint)
+[Phase 3] Apache Jena Fuseki
     ↓
-[Phase 4] Python Interface (SPARQLWrapper + GUI)
+[Phase 4] Streamlit GUI (Python)
 ```
 
 ---
 
-## 📘 **Technologies Used**
+# 🧑‍🤝‍🧑 Contributors
 
-| Category | Tools / Frameworks |
-|-----------|--------------------|
-| NER Extraction | Python, spaCy, pandas |
-| Ontology Design | Protégé, RDF/OWL, Turtle |
-| Knowledge Storage | Apache Jena Fuseki, Jena TDB |
-| Interface | Python, SPARQLWrapper, Flask/Tkinter |
-
----
-
-## 🧑‍🤝‍🧑 **Team Roles**
-
-| Role | Responsibility |
-|------|----------------|
-| NER Engineer | Extract entities using spaCy |
-| Ontology Architect | Design ontology classes & properties in Protégé |
-| Jena Engineer | Load ontology into Jena & setup SPARQL endpoint |
-| Python Developer | Build SPARQL interface and GUI |
+| Name                 | Role                   |
+| -------------------- | ---------------------- |
+| **Bilal Farooq**     | Ontology Design        |
+| **Alam Zeb**         | Ontology Design        |
+| **Saad Khan**        | Jena Fuseki Setup      |
+| **Washam Bin Adnan** | Python Interface + GUI |
 
 ---
 
-## 🏁 **Final Notes**
-- All data and knowledge structures are specific to the topic *Cultural Differences in Pakistan*.  
-- Ensure namespaces remain consistent (`http://example.org/culturaldifference#`).  
-- Before moving between phases, always validate your RDF/OWL syntax in Protégé.  
-- The full ontology (`ontology.owl`) serves as the main dataset for future reasoning and querying.
+# 🏁 Final Notes
+
+* Always ensure your namespaces remain consistent:
+  `http://example.org/culturaldifference#`
+* Validate all TTL / OWL files using Protégé before loading into Fuseki.
+* GUI requires a running Fuseki SPARQL endpoint.
 
 ---
 
-### 👨‍💻 Maintainers
-- **Ontology Team:** [Bilal Farooq, AlamZeb]  
-- **Jena Team:** [Saad Khan]  
-- **Python Interface Team:** [Washam Bin Adnan]  
+
+Just tell me!
