@@ -1,0 +1,136 @@
+1. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?s ?p ?o 
+WHERE { ?s ?p ?o } 
+LIMIT 50
+
+2. SELECT ?predicate (COUNT(?predicate) AS ?count)
+WHERE {
+  ?s ?predicate ?o .
+}
+GROUP BY ?predicate
+ORDER BY DESC(?count)
+LIMIT 10
+
+3. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?class (COUNT(?instance) AS ?count)
+WHERE {
+  ?instance a ?class .
+}
+GROUP BY ?class
+ORDER BY DESC(?count)
+
+4. PREFIX : <http://example.org/ontology/>
+SELECT ?person
+WHERE {
+  ?person a :PERSON .
+}
+LIMIT 30
+
+5. PREFIX : <http://example.org/ontology/>
+SELECT ?org
+WHERE {
+  ?org a :ORG .
+}
+LIMIT 30
+
+6. PREFIX : <http://example.org/ontology/>
+SELECT ?lang
+WHERE {
+  ?lang a :LANGUAGE .
+}
+LIMIT 30
+
+7. PREFIX : <http://example.org/ontology/>
+SELECT ?loc
+WHERE {
+  ?loc a :LOC .
+}
+LIMIT 30
+
+8. PREFIX : <http://example.org/ontology/>
+SELECT ?gpe
+WHERE {
+  ?gpe a :GPE .
+}
+LIMIT 30
+
+9. PREFIX : <http://example.org/ontology/>
+SELECT ?entity ?class
+WHERE { ?entity a ?class . }
+LIMIT 20
+
+10. SELECT DISTINCT ?entity
+WHERE { ?entity ?p ?o . }
+LIMIT 50
+
+11. SELECT ?class (COUNT(?instance) AS ?count)
+WHERE {
+  ?instance a ?class .
+}
+GROUP BY ?class
+ORDER BY DESC(?count)
+
+12. PREFIX onto: <http://example.org/ontology/>
+
+SELECT ?person
+WHERE { ?person a onto:PERSON . }
+LIMIT 20
+
+
+13. PREFIX onto: <http://example.org/ontology/>
+
+SELECT ?org
+WHERE { ?org a onto:ORG . }
+LIMIT 30
+
+
+14. PREFIX onto: <http://example.org/ontology/>
+
+SELECT ?region
+WHERE { ?region a onto:GPE . }
+LIMIT 30
+
+
+15. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 50
+
+16. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?class (COUNT(?x) AS ?count)
+WHERE { ?x a ?class . }
+GROUP BY ?class
+ORDER BY DESC(?count)
+
+17. PREFIX : <http://example.org/culturaldifference#>
+SELECT DISTINCT ?entity
+WHERE { ?entity ?p ?o }
+LIMIT 50
+
+18. PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <http://example.org/culturaldifference#>
+SELECT DISTINCT ?property
+WHERE { ?property a owl:ObjectProperty . }
+
+19. PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <http://example.org/culturaldifference#>
+SELECT DISTINCT ?property
+WHERE { ?property a owl:DatatypeProperty . }
+
+20. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?s ?p ?o
+WHERE {
+  ?s ?p ?o .
+  FILTER(STRSTARTS(STR(?s), STR(:)))
+}
+LIMIT 50
+
+21. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?person ?org
+WHERE { ?person :worksFor ?org . }
+
+22. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?group ?language
+WHERE { ?group :speaksLanguage ?language . }
+
+23. PREFIX : <http://example.org/culturaldifference#>
+SELECT ?festival ?region
+WHERE { ?festival :hasFestivalIn ?region . }

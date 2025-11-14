@@ -1,0 +1,28 @@
+cd C:/apache-jena-fuseki-5.6.0
+fuseki-server --update --mem /ds
+
+
+PREFIXES USED:
+PREFIX : <http://example.org/ontology/>
+PREFIX : <http://example.org/culturaldifference#>
+PREFIX : <http://www.semanticweb.org/bilal-pc/ontologies/2025/11/untitled-ontology-7#>
+
+
+CLASSES:
+<http://example.org/ontology/PERSON>
+<http://example.org/ontology/ORG>
+<http://example.org/ontology/GPE>
+<http://example.org/ontology/LANGUAGE>
+<http://example.org/ontology/NORP>
+
+
+IMPORTANT NOTE
+
+Your unified dataset currently contains:
+
+all properties (object & data properties)
+
+but NO cultural instances (like :Sindhi_Culture, :Punjabi_Culture)
+unless you manually add them with INSERT DATA.
+
+So some queries (like :followsReligion, :celebratesFestival) will return zero results until you insert example individuals.

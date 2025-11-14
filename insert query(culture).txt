@@ -1,0 +1,87 @@
+PREFIX : <http://example.org/culturaldifference#>
+
+INSERT DATA {
+
+  ### CULTURE GROUPS ###
+  :Sindhi_Culture a :CulturalGroup ;
+                  :speaksLanguage :Sindhi ;
+                  :followsReligion :Islam ;
+                  :locatedIn :Sindh ;
+                  :belongsToRegion :South_Pakistan ;
+                  :celebratesFestival :Sindhi_Cap_Day ;
+                  :eatsCuisine :Biryani ;
+                  :wearsDress :Ajrak .
+
+  :Punjabi_Culture a :CulturalGroup ;
+                   :speaksLanguage :Punjabi ;
+                   :followsReligion :Islam ;
+                   :locatedIn :Punjab ;
+                   :belongsToRegion :Central_Pakistan ;
+                   :celebratesFestival :Basant ;
+                   :eatsCuisine :Siri_Pay ;
+                   :wearsDress :Shalwar_Kameez .
+
+  :Balochi_Culture a :CulturalGroup ;
+                   :speaksLanguage :Balochi ;
+                   :followsReligion :Islam ;
+                   :locatedIn :Balochistan ;
+                   :belongsToRegion :West_Pakistan ;
+                   :celebratesFestival :Baloch_Culture_Day ;
+                   :eatsCuisine :Kaak ;
+                   :wearsDress :Balochi_Shawl .
+
+  ### REGIONS ###
+  :Sindh a :Region ;
+         :hasPopulation "47992000" ;
+         :borderWith :Punjab .
+
+  :Punjab a :Region ;
+          :hasPopulation "110012000" ;
+          :borderWith :Sindh ;
+          :borderWith :KPK .
+
+  :Balochistan a :Region ;
+               :hasPopulation "12344000" .
+
+  ### LANGUAGES ###
+  :Sindhi a :Language ;
+          :hasDialect :Lari ;
+          :hasDialect :Vicholi ;
+          :spokenIn :Sindh .
+
+  :Punjabi a :Language ;
+           :hasDialect :Majhi ;
+           :hasDialect :Pothohari ;
+           :spokenIn :Punjab .
+
+  :Balochi a :Language ;
+           :hasDialect :Rakhshani ;
+           :hasDialect :Makrani ;
+           :spokenIn :Balochistan .
+
+  ### RELIGION ###
+  :Islam a :Religion .
+
+  ### FESTIVALS ###
+  :Sindhi_Cap_Day a :Festival ;
+                  :hasFestivalDate "December 6" ;
+                  :hasFestivalIn :Sindh .
+
+  :Basant a :Festival ;
+          :hasFestivalDate "February" ;
+          :hasFestivalIn :Punjab .
+
+  :Baloch_Culture_Day a :Festival ;
+                      :hasFestivalDate "March 2" ;
+                      :hasFestivalIn :Balochistan .
+
+  ### EDUCATION / WORK RELATIONS ###
+  :Ali a :Person ;
+       :educatedAt :Punjab_University ;
+       :worksFor :PTV .
+
+  :Sara a :Person ;
+        :teachesAt :Sindh_University ;
+        :educatedAt :Karachi_University .
+
+}
